@@ -9,7 +9,7 @@ import POS from '../libs/pose'
 
 interface ARSceneProps {
     onScanned: (id: number) => void
-    text?: string
+    textRender: (id: number) => string
 }
 
 class ARScene extends Component<ARSceneProps> {
@@ -145,15 +145,16 @@ class ARScene extends Component<ARSceneProps> {
             const dx = Math.cos(angle)
             const dy = Math.sin(angle)
 
-            if (this.props.text) {
+            const text = this.props.textRender(this.markers[i].id)
+            if (text) {
                 this.context2d.translate(-10, -Math.sqrt(area) * 7)
                 this.context2d.font = "30px Avenir Next"
                 this.context2d.strokeStyle = "black"
-                this.context2d.strokeText(this.props.text, 0, 0)
+                this.context2d.strokeText(text, 0, 0)
                 this.context2d.fillStyle = "white"
-                this.context2d.fillText(this.props.text, 0, 0)
-                this.context2d.resetTransform()
+                this.context2d.fillText(text, 0, 0)
             }
+            this.context2d.resetTransform()
         }
     }
 
