@@ -1,11 +1,9 @@
 import React from 'react'
 
-import ARScene from '../components/ARScene'
+import UserScanPage from './UserScanPage'
 
 const Home = () => (
-    <div className="relative">
-        <ARScene />
-    </div>
+    <UserScanPage />
 )
 
 export default Home

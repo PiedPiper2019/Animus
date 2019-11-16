@@ -7,7 +7,11 @@ import AR from '../libs/aruco'
 import '../libs/polyfill'
 import POS from '../libs/pose'
 
-class ARScene extends Component {
+interface ARSceneProps {
+    onScanned: (id: number) => void
+}
+
+class ARScene extends Component<ARSceneProps> {
 
     video: any
     canvas: any
@@ -86,7 +90,10 @@ class ARScene extends Component {
             this.snapshot()
 
             this.markers = this.detector.detect(this.imageData)
-            this.update();
+            this.update()
+
+            // Trigger parent
+            this.markers.map(marker => marker.id).forEach(this.props.onScanned)
         }
     }
 
