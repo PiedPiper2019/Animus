@@ -76,6 +76,7 @@ class ARScene extends Component<ARSceneProps> {
 
         navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(stream => {
             this.video.srcObject = stream
+            this.video.play()
         })
 
         this.detector = new AR.Detector()
