@@ -9,6 +9,7 @@ import POS from '../libs/pose'
 
 interface ARSceneProps {
     onScanned: (id: number) => void
+    text?: string
 }
 
 class ARScene extends Component<ARSceneProps> {
@@ -144,15 +145,15 @@ class ARScene extends Component<ARSceneProps> {
             const dx = Math.cos(angle)
             const dy = Math.sin(angle)
 
-            const text = `id #${this.markers[i].id}`
-
-            this.context2d.translate(-10, -Math.sqrt(area) * 7)
-            this.context2d.font = "30px Avenir Next"
-            this.context2d.strokeStyle = "black"
-            this.context2d.strokeText(text, 0, 0)
-            this.context2d.fillStyle = "white"
-            this.context2d.fillText(text, 0, 0)
-            this.context2d.resetTransform()
+            if (this.props.text) {
+                this.context2d.translate(-10, -Math.sqrt(area) * 7)
+                this.context2d.font = "30px Avenir Next"
+                this.context2d.strokeStyle = "black"
+                this.context2d.strokeText(this.props.text, 0, 0)
+                this.context2d.fillStyle = "white"
+                this.context2d.fillText(this.props.text, 0, 0)
+                this.context2d.resetTransform()
+            }
         }
     }
 
@@ -164,7 +165,7 @@ class ARScene extends Component<ARSceneProps> {
         return (
             <div className="relative flex full-screen">
                 <canvas className="absolute full-screen" id="ar-canvas" width={1080/3} height={1920/3} />
-                <video className="full-screen" id="ar-video" autoPlay playsinline playsInline style={{ display: 'none' }} />
+                <video className="full-screen" id="ar-video" autoPlay playsInline style={{ display: 'none' }} />
             </div>
         )
     }
