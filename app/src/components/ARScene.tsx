@@ -163,7 +163,7 @@ class ARScene extends Component<ARSceneProps> {
         return (
             <div className="relative flex full-screen">
                 <canvas className="absolute full-screen" id="ar-canvas" width={1080/4} height={1920/4} />
-                <video className="full-screen" id="ar-video" autoPlay muted playsInline playsinline style={{ display: 'none' }} />
+                <video className="full-screen" id="ar-video" autoPlay style={{ display: 'none' }} />
             </div>
         )
     }
