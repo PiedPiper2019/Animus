@@ -3,8 +3,7 @@ import React from 'react'
 import ARScene from '../components/ARScene'
 
 const Home = () => (
-    <div>
-        <h1>Home</h1>
+    <div className="relative">
         <ARScene />
     </div>
 )
