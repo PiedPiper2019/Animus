@@ -1,30 +1,20 @@
-import express, { Application, Request, Response, NextFunction } from "express";
+import {app} from "./api/api"
+import {randomWallet} from "./ethereum"
+import mongoose from 'mongoose'
 
-const app: Application = express();
 
-app.use(express.json());
+// Settings
+const PORT: any = process.env.PORT || 3000
+const dbAddress = '127.0.0.1:27017' // db location
+const dbName = 'animus'  // db name
 
-app.get("/", (req: Request, res: Response): object => {
-    return res.json({ status: "success", message: "Hello World !" });
-  }
-);
+//console.log(randomWallet)
 
-app.use((req: Request, res: Response, next: NextFunction) => {
-  const error = new Error("Invalide route");
-  next(error);
-});
+// Connect to db
+mongoose.connect(`mongodb://${dbAddress}/${dbName}`, { useNewUrlParser: true })
+.then(() => { console.log('Database ('+dbAddress+') connected')})
+.catch(err => { console.error('Database ('+dbAddress+') connection error', err)})
 
-app.use((error: { message: string; status: number }, req: Request, res: Response,next: NextFunction
-  ) => {
-    res.status(error.status || 500);
-    res.json({
-      status: "error",
-      message: error.message
-    });
-    next();
-  }
-);
 
-const PORT: any = process.env.PORT || 3000;
-
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// Start the API
+app.listen(PORT, () => console.log(`API Server started on port ${PORT}`))
