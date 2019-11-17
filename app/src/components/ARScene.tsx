@@ -9,6 +9,7 @@ import POS from '../libs/pose'
 
 interface ARSceneProps {
     onScanned: (id: number) => void
+    textRender: (id: number) => string
 }
 
 class ARScene extends Component<ARSceneProps> {
@@ -76,6 +77,7 @@ class ARScene extends Component<ARSceneProps> {
 
         navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(stream => {
             this.video.srcObject = stream
+            this.video.play()
         })
 
         this.detector = new AR.Detector()
@@ -143,14 +145,15 @@ class ARScene extends Component<ARSceneProps> {
             const dx = Math.cos(angle)
             const dy = Math.sin(angle)
 
-            const text = `id #${this.markers[i].id}`
-
-            this.context2d.translate(-10, -Math.sqrt(area) * 7)
-            this.context2d.font = "30px Avenir Next"
-            this.context2d.strokeStyle = "black"
-            this.context2d.strokeText(text, 0, 0)
-            this.context2d.fillStyle = "white"
-            this.context2d.fillText(text, 0, 0)
+            const text = this.props.textRender(this.markers[i].id)
+            if (text) {
+                this.context2d.translate(-10, -Math.sqrt(area) * 7)
+                this.context2d.font = "30px Avenir Next"
+                this.context2d.strokeStyle = "black"
+                this.context2d.strokeText(text, 0, 0)
+                this.context2d.fillStyle = "white"
+                this.context2d.fillText(text, 0, 0)
+            }
             this.context2d.resetTransform()
         }
     }
@@ -162,8 +165,8 @@ class ARScene extends Component<ARSceneProps> {
     render() {
         return (
             <div className="relative flex full-screen">
-                <canvas className="absolute full-screen" id="ar-canvas" width={1080/4} height={1920/4} />
-                <video className="full-screen" id="ar-video" autoPlay style={{ display: 'none' }} />
+                <canvas className="absolute full-screen" id="ar-canvas" width={1080/3} height={1920/3} />
+                <video className="full-screen" id="ar-video" autoPlay playsInline style={{ display: 'none' }} />
             </div>
         )
     }

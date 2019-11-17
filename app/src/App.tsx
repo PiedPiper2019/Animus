@@ -5,14 +5,14 @@ import {
   Route
 } from 'react-router-dom'
 
-import Home from './pages/Home'
+import UserScanPage from './pages/UserScanPage'
 
 const App = () => (
   <Router>
     <div>
       <Switch>
         <Route path="/">
-          <Home />
+          <UserScanPage />
         </Route>
       </Switch>
     </div>
