@@ -1,11 +1,11 @@
 const ethers = require('ethers');
-const privateKey = require('../storage/keys/keys')
+const privateKey = require('../storage/keys/keys').keys
 const contractInterace = require('../storage/contracts/interface')
 
 let provider = ethers.getDefaultProvider('goerli');
 
 // Define Owner wallet to push IDS 
-exports.wallet = new ethers.Wallet(privateKey,provider);
+wallet = new ethers.Wallet(privateKey,provider);
 exports.contract = new ethers.Contract(contractInterace.address,contractInterace.abi,wallet);
 
 // Store IDS with owner accounts

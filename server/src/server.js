@@ -11,8 +11,8 @@ const port = 3000;
 //IPFS.readUserInfoFromIPFS("QmZwXEkC6Xg1RMSPNFch3J3NTBYPkb2UksoSjBDQBavJos")
 
 
-dummies.uploadDummies()
-dummies.loadDummies()
+// dummies.uploadDummies()
+// dummies.loadDummies()
 
 
 server.listen(port, () => {

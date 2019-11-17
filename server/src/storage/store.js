@@ -5,8 +5,8 @@ const ethereum = require("./ethereum")
 exports.storeUserData  = (userInfo) => {
 
     // TODO make it chain
-    var hashIPFS = uploadToIPFS(userInfo)
-    var hashETH = storeIdentityToEthereum(address, hashIPFS)
+    var hashIPFS = ipfs.uploadToIPFS(userInfo)
+    var hashETH = ipfs.storeIdentityToEthereum(address, hashIPFS)
 
     return hashIPFS
 
@@ -15,8 +15,8 @@ exports.storeUserData  = (userInfo) => {
 exports.readUserData  = (hashIPFS) => {
 
     // TODO 
-    var hashIPFS = uploadToIPFS(userInfo)
-    var hashETH = storeIdentityToEthereum(address, hashIPFS)
+    var hashIPFS = ipfs.uploadToIPFS(userInfo)
+    var hashETH = ethereum.storeIdentityToEthereum(address, hashIPFS)
 
     return (hashIPFS,hashETH)
 
