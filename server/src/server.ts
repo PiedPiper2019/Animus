@@ -1,5 +1,6 @@
 import {app} from "./api/api"
-import {randomWallet} from "./ethereum"
+import {randomWallet} from "./utils/ethereum"
+import {ipfs} from "./utils/ipfs"
 import mongoose from 'mongoose'
 
 
@@ -10,11 +11,12 @@ const dbName = 'animus'  // db name
 
 //console.log(randomWallet)
 
+// Connect to IPFS
+
 // Connect to db
 mongoose.connect(`mongodb://${dbAddress}/${dbName}`, { useNewUrlParser: true })
 .then(() => { console.log('Database ('+dbAddress+') connected')})
 .catch(err => { console.error('Database ('+dbAddress+') connection error', err)})
-
 
 // Start the API
 app.listen(PORT, () => console.log(`API Server started on port ${PORT}`))

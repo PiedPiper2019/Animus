@@ -18,7 +18,7 @@ export let addUser = (req: Request, res: Response) => {
 export let getUser = (req: Request, res: Response) => {
 
   // TO TEST
-  var id:number = Number(req.params.id)
+  var id:number = Number(req.params.userId)
   if (id>2){
     res.send("Error : to large id for test")
   }else{

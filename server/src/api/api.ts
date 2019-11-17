@@ -28,4 +28,9 @@ app.use((error: { message: string; status: number }, req: Request, res: Response
   }
 );
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+})
+
 export {app}
