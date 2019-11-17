@@ -20,3 +20,9 @@ We created an **identity layer** on a blockchain to give back the ownership of h
 This project heavily relies on augmented reality technology for the web. We used Aruco markers to relay the position of the attendy as well as his identity. All the data about the identity of the users are stored on the Ethereum and IPFS blockchains.
 
 
+
+
+<center><figure>
+  <img height="400px"  src="https://imgur.com/download/x6bLqB4/" alt="" />
+  <figcaption>Exemples de Marker Aruco</figcaption>
+</figure></center>
